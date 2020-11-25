@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
 import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -61,9 +59,6 @@ export default function SignIn({ setName }) {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
         <Typography component="h1" variant="h5">
           ようこそ
         </Typography>
@@ -77,7 +72,7 @@ export default function SignIn({ setName }) {
             label="ニックネーム"
             name="name"
             autoFocus
-            onChange={(e) => { setString(e.target.value) }}
+            onChange={(e) => setString(e.target.value)}
             onKeyDown={(e) => {
               if (isComposed) return
               if (e.key === 'Enter') {
@@ -85,8 +80,8 @@ export default function SignIn({ setName }) {
                 e.preventDefault()
               }
             }}
-            onCompositionStart={() => { setIsComposed(true) }}
-            onCompositionEnd={() => { setIsComposed(false) }}
+            onCompositionStart={() => setIsComposed(true)}
+            onCompositionEnd={() => setIsComposed(false)}
           />
           <Button
             type="button"
