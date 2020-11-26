@@ -1,9 +1,7 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import {
   makeStyles,
-  List,
   ListItem,
-  Divider,
   ListItemText,
   ListItemAvatar,
   Avatar,
@@ -12,21 +10,27 @@ import {
 
 import { gravatarPath } from '../gravatar'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     width: '100%',
-    backgroundColor: theme.palette.background.paper,
   },
   inline: {
     display: 'inline',
   },
 }));
 
-const MessageItem = ({ name, text }) => {
+const MessageItem = ({ name, text, isLastItem }) => {
+  const ref = useRef(null)
   const classes = useStyles()
   const avatarPath = gravatarPath(name)
+
+  useEffect(() => {
+    if (isLastItem) {
+      ref.current.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [isLastItem])
   return (
-    <ListItem divider={true}>
+    <ListItem divider={true} ref={ref}>
       <ListItemAvatar>
         <Avatar src={avatarPath} />
       </ListItemAvatar>
